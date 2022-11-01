@@ -113,7 +113,7 @@ function showWeather(response) {
   let humidity = document.querySelector("#currentHumidity");
   humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#currentWind");
-  wind.innerHTML = (response.data.wind.speed * 3.6).toFixed(2);
+  wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
   let description = document.querySelector("#description");
   description.innerHTML = response.data.weather[0].description;
 }

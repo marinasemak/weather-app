@@ -71,3 +71,13 @@
 .daily-info_weekday {
   font-weight: 600;
 }
+
+.author {
+  font-size: 11px;
+  box-sizing: border-box;
+  max-width: 720px;
+  margin: 20px auto;
+}
+.author-link {
+  text-decoration: none;
+}
