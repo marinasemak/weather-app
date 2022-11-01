@@ -1,0 +1,73 @@
+.body {
+  height: 100%;
+  background-color: #d9edf2;
+  font-family: "Montserrat", sans-serif;
+  line-height: 28px;
+}
+.main-view {
+  box-sizing: border-box;
+  max-width: 720px;
+  border: 0.5px solid #ffff;
+  margin: 0 auto;
+  margin-top: 80px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 13px rgba(117, 134, 192, 0.906);
+  background: #d9edf2;
+  padding: 0 40px;
+}
+.search-field {
+  margin: 40px 0;
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 25px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.today-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.today-info_icon {
+  display: block;
+  width: 125px;
+}
+.today-info_location {
+  margin-right: 30px;
+}
+.today-info_city {
+  font-size: 42px;
+  font-weight: 600;
+}
+.today-info_temp {
+  font-size: 110px;
+  font-weight: 300;
+}
+.today-info_units {
+  font-size: 36px;
+  font-weight: 400;
+}
+.today-info_unit-link {
+  text-decoration: none;
+}
+
+.daily-info_temp {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+.daily-info_day {
+  margin: 0 auto;
+  line-height: 24px;
+  text-align: center;
+}
+.daily-info_weekday {
+  font-weight: 600;
+}

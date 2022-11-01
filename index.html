@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body class="body">
+    <div class="container">
+      <div class="main-view">
+        <form id="search-form">
+          <input
+            type="search"
+            class="search-field"
+            name="search"
+            placeholder="Enter a city"
+          />
+        </form>
+        <div class="today-info">
+          <img
+            src="images/sunny_sun_weather.svg"
+            class="today-info_icon"
+            alt="sunny"
+          />
+          <div class="today-info_location">
+            <span class="today-info_city" id="city-name"></span>
+            <br />
+            <span id="currentDate">13:06, Wed Oct 5</span>
+            <br />
+            <span id="description">Sunny</span>
+          </div>
+          <div class="today-info_temp" id="temperature"></div>
+          <div>
+            <span class="today-info_units">
+              <a href="#" id="celsius-link" class="today-info_unit-link">°C</a>
+              |
+              <a href="#" id="fahrenheit-link" class="today-info_unit-link"
+                >°F</a
+              ></span
+            >
+            <br />
+            Humidity: <span id="currentHumidity"></span>%
+            <br />
+            Wind: <span id="currentWind"></span>km/h
+          </div>
+        </div>
+
+        <hr />
+        <div class="daily-info_temp">
+          <div class="daily-info_day">
+            <span class="daily-info_weekday"> Thu </span>
+            <br />
+            <img src="images/cloudy_sunny.svg" alt="cloudy_sunny" />
+            <br />
+            16 &nbsp; &nbsp; 8
+          </div>
+          <div class="daily-info_day">
+            <span class="daily-info_weekday"> Fri </span>
+            <br />
+            <img src="images/rain_cloudy.svg" alt="cloudy" />
+            <br />
+            17 &nbsp; &nbsp; 9
+          </div>
+          <div class="daily-info_day">
+            <span class="daily-info_weekday"> Sat </span>
+            <br />
+            <img src="images/rain_cloud_weather_raining.svg" alt="raining" />
+            <br />
+            12 &nbsp; &nbsp; 5
+          </div>
+          <div class="daily-info_day">
+            <span class="daily-info_weekday"> Sun </span>
+            <br />
+            <img
+              src="images/sun_cloud_weather_raining.svg"
+              alt="sun and rain"
+            />
+            <br />
+            8 &nbsp; &nbsp; 2
+          </div>
+          <div class="daily-info_day">
+            <span class="daily-info_weekday"> Mon </span>
+            <br />
+            <img src="images/foggy_cloudy.svg" alt="foggy" />
+            <br />
+            7 &nbsp; &nbsp; 1
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src/index.js"></script>
+  </body>
+</html>
