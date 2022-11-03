@@ -31,23 +31,6 @@ function showDate(today) {
 let currentDate = document.querySelector("#currentDate");
 currentDate.innerHTML = showDate(new Date());
 
-//Display temperature in Celsius and add a link to convert it to Fahrenheit
-function showCelcius(event) {
-  event.preventDefault();
-  let todayTemp = document.querySelector(".today-info_temp");
-  todayTemp.innerHTML = 6;
-}
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", showCelcius);
-
-function showFahrenheit(event) {
-  event.preventDefault();
-  let todayTemp = document.querySelector(".today-info_temp");
-  todayTemp.innerHTML = 43;
-}
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", showFahrenheit);
-
 //Show the current temperature of the city from search result
 
 let apiKey = "37232bf6b294f9b4afoeacbdcb8093at";
@@ -69,7 +52,8 @@ function showWeather(response) {
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = response.data.city;
   let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
+  celsiusTemperature = response.data.temperature.current;
+  temperature.innerHTML = Math.round(celsiusTemperature);
   let humidity = document.querySelector("#currentHumidity");
   humidity.innerHTML = response.data.temperature.humidity;
   let wind = document.querySelector("#currentWind");
@@ -85,6 +69,31 @@ let search = document.querySelector("#search-form");
 search.addEventListener("submit", searchCity);
 
 showCity("kyiv");
+
+//Display temperature in Celsius and add a link to convert it to Fahrenheit
+function showCelcius(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temperature");
+  temperature.innerHTML = Math.round(celsiusTemperature);
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+}
+
+function showFahrenheit(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temperature");
+  let farenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperature.innerHTML = farenheitTemp;
+  fahrenheit.classList.add("active");
+  celsius.classList.remove("active");
+}
+let celsiusTemperature = null;
+
+let celsius = document.querySelector("#celsius-link");
+celsius.addEventListener("click", showCelcius);
+
+let fahrenheit = document.querySelector("#fahrenheit-link");
+fahrenheit.addEventListener("click", showFahrenheit);
 
 //Add a Current Location on page refresh
 /* function showPosition(position) {

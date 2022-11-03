@@ -53,8 +53,18 @@
   font-size: 36px;
   font-weight: 400;
 }
-.today-info_unit-link {
+
+a {
   text-decoration: none;
+}
+
+.active {
+  color: black;
+  cursor: auto;
+}
+
+.active:hover {
+  color: black;
 }
 
 .daily-info_temp {
