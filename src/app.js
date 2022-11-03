@@ -76,6 +76,9 @@ function showWeather(response) {
   wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
   let description = document.querySelector("#description");
   description.innerHTML = response.data.condition.description;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute("src", `images/${response.data.condition.icon}.svg`);
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 let search = document.querySelector("#search-form");
@@ -84,7 +87,7 @@ search.addEventListener("submit", searchCity);
 showCity("kyiv");
 
 //Add a Current Location on page refresh
-function showPosition(position) {
+/* function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiUrl = `${endpointUrl}lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
@@ -92,4 +95,4 @@ function showPosition(position) {
   axios.get(apiUrl).then(showWeather);
 }
 
-navigator.geolocation.getCurrentPosition(showPosition);
+navigator.geolocation.getCurrentPosition(showPosition); */
