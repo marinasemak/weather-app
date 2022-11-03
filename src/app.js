@@ -1,43 +1,3 @@
-/* let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  oslo: {
-    temp: -5,
-    humidity: 20,
-  },
-};
-
-let city = prompt("Enter a city");
-city = city.toLowerCase().trim();
-
-if (weather[city] !== undefined) {
-  let celsius = Math.round(weather[city].temp);
-  let fahrenheit = Math.round((celsius * 9) / 5 + 32);
-  let humidity = weather[city].humidity;
-  alert(
-    `It is currently ${celsius}°C (${fahrenheit}°F) in ${city} with a humidity of ${humidity}%`
-  );
-} else {
-  alert(
-    `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-  );
-}
- */
-
 // Show current date and time
 function showDate(today) {
   let hours = today.getHours();
@@ -90,12 +50,12 @@ fahrenheit.addEventListener("click", showFahrenheit);
 
 //Show the current temperature of the city from search result
 
-let apiKey = "58a6775f97527351bf6c6966e209be39";
+let apiKey = "37232bf6b294f9b4afoeacbdcb8093at";
 let units = "metric";
-let endpointUrl = "https://api.openweathermap.org/data/2.5/weather";
+let endpointUrl = "https://api.shecodes.io/weather/v1/current?";
 
 function showCity(city) {
-  let apiUrl = `${endpointUrl}?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `${endpointUrl}query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
 }
 
@@ -107,15 +67,15 @@ function searchCity(event) {
 
 function showWeather(response) {
   let cityName = document.querySelector("#city-name");
-  cityName.innerHTML = response.data.name;
+  cityName.innerHTML = response.data.city;
   let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.main.temp);
+  temperature.innerHTML = Math.round(response.data.temperature.current);
   let humidity = document.querySelector("#currentHumidity");
-  humidity.innerHTML = response.data.main.humidity;
+  humidity.innerHTML = response.data.temperature.humidity;
   let wind = document.querySelector("#currentWind");
   wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.weather[0].description;
+  description.innerHTML = response.data.condition.description;
 }
 
 let search = document.querySelector("#search-form");
@@ -127,22 +87,9 @@ showCity("kyiv");
 function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiUrl = `${endpointUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `${endpointUrl}lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(showWeather);
 }
 
 navigator.geolocation.getCurrentPosition(showPosition);
-
-/* function showTemp(response) {
-  let city = document.querySelector("#city-name");
-  city.innerHTML = response.data.name;
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.main.temp);
-  let humidity = document.querySelector("#currentHumidity");
-  humidity.innerHTML = response.data.main.humidity;
-  let wind = document.querySelector("#currentWind");
-  wind.innerHTML = (response.data.wind.speed * 3.6).toFixed(2);
-  let description = document.querySelector("#description");
-  description.innerHTML = response.data.weather[0].description;
-} */

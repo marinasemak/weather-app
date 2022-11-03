@@ -39,7 +39,7 @@
   width: 125px;
 }
 .today-info_location {
-  margin-right: 30px;
+  max-width: 300px;
 }
 .today-info_city {
   font-size: 42px;
