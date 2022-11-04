@@ -45,22 +45,27 @@ function showCity(city) {
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector(".search-field").value;
-  showCity(city);
+  if (city) {
+    showCity(city);
+  } else {
+    showCity("kyiv");
+  }
 }
 
 function showWeather(response) {
   let cityName = document.querySelector("#city-name");
-  cityName.innerHTML = response.data.city;
   let temperature = document.querySelector("#temperature");
   celsiusTemperature = response.data.temperature.current;
-  temperature.innerHTML = Math.round(celsiusTemperature);
   let humidity = document.querySelector("#currentHumidity");
-  humidity.innerHTML = response.data.temperature.humidity;
   let wind = document.querySelector("#currentWind");
-  wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.condition.description;
   let iconElement = document.querySelector("#icon");
+
+  cityName.innerHTML = response.data.city;
+  temperature.innerHTML = Math.round(celsiusTemperature);
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
+  description.innerHTML = response.data.condition.description;
   iconElement.setAttribute("src", `images/${response.data.condition.icon}.svg`);
   iconElement.setAttribute("alt", response.data.condition.description);
 }
