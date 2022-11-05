@@ -33,23 +33,37 @@ currentDate.innerHTML = showDate(new Date());
 
 //Daily forecast
 
-function weatherForecast() {
+function formatDate(timestemp) {
+  let formattedTime = new Date(timestemp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[formattedTime.getDay()];
+  return day;
+}
+
+function weatherForecast(response) {
+  let dailyForecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="daily-info_temp">`;
-  let days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="daily-info_day">
-        <span class="daily-info_weekday">${day}</span>
-        <br />
-        <img src="images/cloudy_sunny.svg" alt="cloudy_sunny" />
-        <br />
-        <span class="daily-info-temp__max">16</span> &nbsp; &nbsp;
-        <span class="daily-info-temp__min">8</span>
-      </div>
-      `;
+
+  dailyForecast.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="daily-info_day">
+          <span class="daily-info_weekday">${formatDate(day.time)}</span>
+          <br />
+          <img src="images/${day.condition.icon}.svg" alt="cloudy_sunny" />
+          <br />
+          <span class="daily-info-temp__max">${Math.round(
+            day.temperature.maximum
+          )}</span> &nbsp; &nbsp;
+          <span class="daily-info-temp__min">${Math.round(
+            day.temperature.minimum
+          )}</span>
+        </div>
+        `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -58,7 +72,6 @@ function weatherForecast() {
 
 function getForecast(coordinates) {
   let apiUrl = `${endpointUrl}forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(weatherForecast);
 }
 
