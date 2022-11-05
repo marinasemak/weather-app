@@ -56,14 +56,20 @@ function weatherForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  let apiUrl = `${endpointUrl}forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(weatherForecast);
+}
+
 //Show the current temperature of the city from search result
 
 let apiKey = "37232bf6b294f9b4afoeacbdcb8093at";
 let units = "metric";
-let endpointUrl = "https://api.shecodes.io/weather/v1/current?";
+let endpointUrl = "https://api.shecodes.io/weather/v1/";
 
 function showCity(city) {
-  let apiUrl = `${endpointUrl}query=${city}&key=${apiKey}&units=${units}`;
+  let apiUrl = `${endpointUrl}current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
 }
 
@@ -93,6 +99,8 @@ function showWeather(response) {
   description.innerHTML = response.data.condition.description;
   iconElement.setAttribute("src", `images/${response.data.condition.icon}.svg`);
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 let search = document.querySelector("#search-form");
