@@ -81,6 +81,9 @@ a {
 .daily-info_weekday {
   font-weight: 600;
 }
+.daily-info-temp__min {
+  opacity: 0.5;
+}
 
 .author {
   font-size: 11px;

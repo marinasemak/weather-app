@@ -31,6 +31,31 @@ function showDate(today) {
 let currentDate = document.querySelector("#currentDate");
 currentDate.innerHTML = showDate(new Date());
 
+//Daily forecast
+
+function weatherForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="daily-info_temp">`;
+  let days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="daily-info_day">
+        <span class="daily-info_weekday">${day}</span>
+        <br />
+        <img src="images/cloudy_sunny.svg" alt="cloudy_sunny" />
+        <br />
+        <span class="daily-info-temp__max">16</span> &nbsp; &nbsp;
+        <span class="daily-info-temp__min">8</span>
+      </div>
+      `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //Show the current temperature of the city from search result
 
 let apiKey = "37232bf6b294f9b4afoeacbdcb8093at";
@@ -73,8 +98,6 @@ function showWeather(response) {
 let search = document.querySelector("#search-form");
 search.addEventListener("submit", searchCity);
 
-showCity("kyiv");
-
 //Display temperature in Celsius and add a link to convert it to Fahrenheit
 function showCelcius(event) {
   event.preventDefault();
@@ -99,6 +122,9 @@ celsius.addEventListener("click", showCelcius);
 
 let fahrenheit = document.querySelector("#fahrenheit-link");
 fahrenheit.addEventListener("click", showFahrenheit);
+
+showCity("kyiv");
+weatherForecast();
 
 //Add a Current Location on page refresh
 /* function showPosition(position) {
