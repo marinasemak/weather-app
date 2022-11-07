@@ -119,41 +119,5 @@ function showWeather(response) {
 let search = document.querySelector("#search-form");
 search.addEventListener("submit", searchCity);
 
-//Display temperature in Celsius and add a link to convert it to Fahrenheit
-function showCelcius(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-}
-
-function showFahrenheit(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#temperature");
-  let farenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
-  temperature.innerHTML = farenheitTemp;
-  fahrenheit.classList.add("active");
-  celsius.classList.remove("active");
-}
-let celsiusTemperature = null;
-
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", showCelcius);
-
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", showFahrenheit);
-
 showCity("kyiv");
 weatherForecast();
-
-//Add a Current Location on page refresh
-/* function showPosition(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  let apiUrl = `${endpointUrl}lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(showWeather);
-}
-
-navigator.geolocation.getCurrentPosition(showPosition); */

@@ -58,15 +58,6 @@ a {
   text-decoration: none;
 }
 
-.active {
-  color: black;
-  cursor: auto;
-}
-
-.active:hover {
-  color: black;
-}
-
 .daily-info_temp {
   display: flex;
   align-items: center;
